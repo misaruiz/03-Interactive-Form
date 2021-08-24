@@ -1,6 +1,9 @@
-console.log("Test");
+// console.log("Test");
 
+
+//////////////////////////////////////////////////////////////////////////////////
 // To focus on first input (name field) on load
+//////////////////////////////////////////////////////////////////////////////////
 // const inputName = document.querySelector('input#name');
 // inputName.focus();
 document.querySelector('input#name').focus();
@@ -12,7 +15,9 @@ function inputJobOtherHide() {
 };
 inputJobOtherHide();
 
+//////////////////////////////////////////////////////////////////////////////////
 // To unhide the Other Job Role field when other is
+//////////////////////////////////////////////////////////////////////////////////
 const selectJob = document.querySelector('select#title');
 const optionJobOther = document.querySelector('option[value=other]');
 // const optionJobOtherValue = optionJobOther.value;
@@ -27,7 +32,9 @@ selectJob.addEventListener("change", (e) => {
     }
 });
 
+//////////////////////////////////////////////////////////////////////////////////
 // To disable color select for tshirt
+//////////////////////////////////////////////////////////////////////////////////
 const selectColor = document.querySelector('select#color');
 // function selectColorDisable() {
 //     selectColor.disabled = true;
@@ -35,8 +42,9 @@ const selectColor = document.querySelector('select#color');
 // selectColorDisable();
 selectColor.disabled = true;
 
-
+//////////////////////////////////////////////////////////////////////////////////
 // to display color select for tshirt once design is selected
+//////////////////////////////////////////////////////////////////////////////////
 const selectDesign = document.querySelector('select#design');
 
 selectDesign.addEventListener('change', (e) => {
@@ -83,3 +91,33 @@ selectDesign.addEventListener('change', (e) => {
 // const heartColor = document.querySelector('option[data-theme=heart]'); 
 // const heartColorTheme = heartColor.getAttribute('data-theme');
 // const heartColorOptions = dococument.querySelectorAll('option[data-theme=heart]');
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// To add up all activites costs
+//////////////////////////////////////////////////////////////////////////////////
+const fieldsetActivites = document.querySelector('fieldset#activities');
+const activitesCostTotalPrint = document.querySelector('#activities-cost');
+let activitesCostTotal = 0;
+
+// to listen for any changes in the Activities fielset
+
+fieldsetActivites.addEventListener('change', (e) => {
+    const activityCost = parseInt(e.target.getAttribute('data-cost'));
+    // function formatCost() {
+    //     const regExActivitiesCost = /^([^0-9]*)([0-9].*)$/;
+    //     const activitesCostTotalPrintText = activitesCostTotalPrint.innerHTML;
+    //     console.log(activitesCostTotal);
+    //     return activitesCostTotalPrintText.replace(regExActivitiesCost, '$1 + activitesCostTotal');
+    //     // activitesCostTotalPrint.innerHTML = activitesCostTotal;
+    // }
+    
+    if (e.target.checked) {
+        activitesCostTotal += activityCost;
+    } else if (e.target.checked == false) {
+        activitesCostTotal -= activityCost;
+    }
+    // formatCost();
+    activitesCostTotalPrint.innerHTML = `Total: $${activitesCostTotal}`;
+});
