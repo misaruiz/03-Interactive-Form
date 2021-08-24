@@ -121,3 +121,31 @@ fieldsetActivites.addEventListener('change', (e) => {
     // formatCost();
     activitesCostTotalPrint.innerHTML = `Total: $${activitesCostTotal}`;
 });
+
+//Payment info
+const payMethod = document.querySelector('select#payment');
+const payCredit = document.querySelector('div#credit-card');
+const payPaypal = document.querySelector('div#paypal');
+const payBitcoin = document.querySelector('div#bitcoin');
+
+payPaypal.hidden = true;
+payBitcoin.hidden = true;
+
+payMethod.children[1].setAttribute('selected', '');
+
+payMethod.addEventListener('change', (e) => {
+    if (e.target.value == payPaypal.getAttribute('id')) {
+        payPaypal.hidden = false;
+        payBitcoin.hidden = true;
+        payCredit.hidden = true;
+    } else if (e.target.value == payBitcoin.getAttribute('id')) {
+        payPaypal.hidden = true;
+        payBitcoin.hidden = false;
+        payCredit.hidden = true;
+    } else if (e.target.value == payCredit.getAttribute('id')) {
+        payPaypal.hidden = true;
+        payBitcoin.hidden = true;
+        payCredit.hidden = false;
+    }
+}
+);
