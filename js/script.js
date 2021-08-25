@@ -24,7 +24,7 @@ selectJob.addEventListener("change", (e) => {
     let optionTarget = e.target;
     // let optionValue = optionTarget.value;
     // console.log(optionValue);
-    if (optionValue.value == optionJobOther.value) {
+    if (optionTarget.value == optionJobOther.value) {
         inputJobOther.style.display = 'block';
     } else {
         inputJobOtherHide();
