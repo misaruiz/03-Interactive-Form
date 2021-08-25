@@ -191,6 +191,7 @@ const form = document.querySelector('form');
 
 const nameRegex = /\w+/;
 const emailRegex = /^[^@]+@[^@]+\.[a-zA-Z]+$/;
+const emailEmptyRegex = /.+/;
 const cardRegex= /^[0-9]{13,16}$/;
 const zipRegex = /^[0-9]{5}$/;
 const cVVRegex = /^[0-9]{3}$/;
@@ -203,6 +204,10 @@ input.parentElement.classList.add("not-valid");
 input.parentElement.classList.remove("valid");
 // input.parentElement.lastElementChild.style.display = "block";
 input.parentElement.querySelector('.hint').style.display = "block";
+    // to have alternate message if field is simply missing email address
+    if (emailEmptyRegex.test(inputEmail) == true) {
+        inputEmail.parentElement.querySelector('.hint').innerHTML = "Please enter an email address."
+    }
 }
 
 function errorFalse(input) {
