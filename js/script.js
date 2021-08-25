@@ -217,13 +217,15 @@ form.addEventListener('submit', (e) => {
         e.preventDefault();
         input.parentElement.classList.add("not-valid");
         input.parentElement.classList.remove("valid");
-        input.parentElement.lastElementChild.style.display = "block";
+        // input.parentElement.lastElementChild.style.display = "block";
+        input.parentElement.querySelector('.hint').style.display = "block";
     }
 
     function errorFalse(input) {
         input.parentElement.classList.remove("not-valid");
         input.parentElement.classList.add("valid");
-        input.parentElement.lastElementChild.style.display = "none";
+        // input.parentElement.lastElementChild.style.display = "none";
+        input.parentElement.querySelector('.hint').style.display = "none";
     }
 
     // Validate name
