@@ -189,6 +189,39 @@ const inputZip = document.querySelector('input#zip');
 const inputCVV = document.querySelector('input#cvv');
 const form = document.querySelector('form');
 
+const nameRegex = /\w+/;
+const emailRegex = /^[^@]+@[^@]+\.[a-zA-Z]+$/;
+const cardRegex= /^[0-9]{13,16}$/;
+const zipRegex = /^[0-9]{5}$/;
+const cVVRegex = /^[0-9]{3}$/;
+
+
+// Validate function
+function errorTrue(input, eTarget) {
+eTarget.preventDefault();
+input.parentElement.classList.add("not-valid");
+input.parentElement.classList.remove("valid");
+// input.parentElement.lastElementChild.style.display = "block";
+input.parentElement.querySelector('.hint').style.display = "block";
+}
+
+function errorFalse(input) {
+input.parentElement.classList.remove("not-valid");
+input.parentElement.classList.add("valid");
+// input.parentElement.lastElementChild.style.display = "none";
+input.parentElement.querySelector('.hint').style.display = "none";
+}
+
+function validateField(input, inputValid, eTarget) {
+if (inputValid == false) {
+errorTrue(input, eTarget);
+} else {
+errorFalse(input, eTarget);
+}
+}
+
+
+
 form.addEventListener('submit', (e) => {
     // e.preventDefault()
     // let inputNameValue = inputName.value;
@@ -196,11 +229,11 @@ form.addEventListener('submit', (e) => {
     // let inputCardValue = inputCardNumber.value;
     // let inputZipValue = inputZip.value;
     // let inputCVVValue = inputCVV.value;
-    let nameValid = /\w+/.test(inputName.value);
-    let emailValid = /^[^@]+@[^@]+\.[a-zA-Z]+$/.test(inputEmail.value);
-    let cardValid = /^[0-9]{13,16}$/.test(inputCardNumber.value);
-    let zipValid = /^[0-9]{5}$/.test(inputZip.value);
-    let cVVValid = /^[0-9]{3}$/.test(inputCVV.value);
+    let nameValid = nameRegex.test(inputName.value);
+    let emailValid = emailRegex.test(inputEmail.value);
+    let cardValid = cardRegex.test(inputCardNumber.value);
+    let zipValid = zipRegex.test(inputZip.value);
+    let cVVValid = cVVRegex.test(inputCVV.value);
 
     // Validate name all
     // if (!nameValid || !emailValid || !cardValid || !zipValid || !cVVValid) {
@@ -213,35 +246,12 @@ form.addEventListener('submit', (e) => {
     //     console.log(`CVV is valid? ${cVVValid}`);
     // }
 
-    function errorTrue(input) {
-        e.preventDefault();
-        input.parentElement.classList.add("not-valid");
-        input.parentElement.classList.remove("valid");
-        // input.parentElement.lastElementChild.style.display = "block";
-        input.parentElement.querySelector('.hint').style.display = "block";
-    }
 
-    function errorFalse(input) {
-        input.parentElement.classList.remove("not-valid");
-        input.parentElement.classList.add("valid");
-        // input.parentElement.lastElementChild.style.display = "none";
-        input.parentElement.querySelector('.hint').style.display = "none";
-    }
-
-    // Validate function
-    function validateField(input, inputValid) {
-        if (inputValid == false) {
-            errorTrue(input);
-        } else {
-            errorFalse(input);
-        }
-    }
-
-    validateField(inputName, nameValid);
-    validateField(inputEmail, emailValid);
-    validateField(inputCardNumber, cardValid);
-    validateField(inputZip, zipValid);
-    validateField(inputCVV, cVVValid);
+    validateField(inputName, nameValid, e);
+    validateField(inputEmail, emailValid, e);
+    validateField(inputCardNumber, cardValid, e);
+    validateField(inputZip, zipValid, e);
+    validateField(inputCVV, cVVValid, e);
 
 
     // Validate email
@@ -299,3 +309,12 @@ for (i=0;i<activities.length;i++) {
         e.target.parentElement.classList.remove("focus");
     } )
 }
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// For realtime error message
+//////////////////////////////////////////////////////////////////////////////////
+inputEmail.addEventListener('keyup', (e) => {
+    let emailValid = emailRegex.test(inputEmail.value);
+    validateField(inputEmail, emailValid, e);
+})
