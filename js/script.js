@@ -173,7 +173,7 @@ form.addEventListener('submit', (e) => {
     // let inputCVVValue = inputCVV.value;
     let nameValid = /\w+/.test(inputName.value);
     let emailValid = /^[^@]+@[^@]+\.[a-zA-Z]+$/.test(inputEmail.value);
-    let cardValid = /^[0-9]{4}\-?[0-9]{4}\-?[0-9]{4}\-?[0-9]{4}\s?$/.test(inputCardNumber.value);
+    let cardValid = /^[0-9]{13,16}$/.test(inputCardNumber.value);
     let zipValid = /^[0-9]{5}$/.test(inputZip.value);
     let cVVValid = /^[0-9]{3}$/.test(inputCVV.value);
 
@@ -207,6 +207,13 @@ form.addEventListener('submit', (e) => {
 
     if (emailValid == false) {
         e.preventDefault();
+        inputEmail.parentElement.classList.add("not-valid");
+        inputEmail.parentElement.classList.remove("valid");
+        inputEmail.parentElement.lastElementChild.style.display = 'block';
+    } else {
+        inputEmail.parentElement.classList.remove("not-valid");
+        inputEmail.parentElement.classList.add("valid");
+        inputEmail.parentElement.lastElementChild.style.display = 'none';
     }
 
     // Validate Credi Card
@@ -214,6 +221,13 @@ form.addEventListener('submit', (e) => {
 
     if (cardValid == false) {
         e.preventDefault();
+        inputCardNumber.parentElement.classList.add("not-valid");
+        inputCardNumber.parentElement.classList.remove("valid");
+        inputCardNumber.parentElement.lastElementChild.style.display = 'block';
+    } else {
+        inputCardNumber.parentElement.classList.remove("not-valid");
+        inputCardNumber.parentElement.classList.add("valid");
+        inputCardNumber.parentElement.lastElementChild.style.display = 'none';
     }
 
     // Validate zip
@@ -221,6 +235,13 @@ form.addEventListener('submit', (e) => {
 
     if (zipValid == false) {
         e.preventDefault();
+        inputZip.parentElement.classList.add("not-valid");
+        inputZip.parentElement.classList.remove("valid");
+        inputZip.parentElement.lastElementChild.style.display = 'block';
+    } else {
+        inputZip.parentElement.classList.remove("not-valid");
+        inputZip.parentElement.classList.add("valid");
+        inputZip.parentElement.lastElementChild.style.display = 'none';
     }
 
     // Validate CVV
@@ -228,6 +249,13 @@ form.addEventListener('submit', (e) => {
 
     if (cVVValid == false) {
         e.preventDefault();
+        inputCVV.parentElement.classList.add("not-valid");
+        inputCVV.parentElement.classList.remove("valid");
+        inputCVV.parentElement.lastElementChild.style.display = 'block';
+    } else {
+        inputCVV.parentElement.classList.remove("not-valid");
+        inputCVV.parentElement.classList.add("valid");
+        inputCVV.parentElement.lastElementChild.style.display = 'none';
     }
 
 })
