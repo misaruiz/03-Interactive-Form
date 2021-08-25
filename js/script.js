@@ -99,6 +99,7 @@ selectDesign.addEventListener('change', (e) => {
 const fieldsetActivites = document.querySelector('fieldset#activities');
 const activitesCostTotalPrint = document.querySelector('#activities-cost');
 let activitesCostTotal = 0;
+const activities = fieldsetActivites.querySelectorAll('input[type=checkbox]');
 
 // to listen for any changes in the Activities fielset
 
@@ -114,11 +115,35 @@ fieldsetActivites.addEventListener('change', (e) => {
     
     if (e.target.checked) {
         activitesCostTotal += activityCost;
+        for (i=0;i<activities.length;i++) {
+            // Hides overlapping activities
+            if (activities[i].getAttribute('data-day-and-time') == e.target.getAttribute('data-day-and-time')) {
+                activities[i].parentElement.classList.add('disabled');
+                activities[i].disabled = true;
+                e.target.parentElement.classList.remove('disabled');
+                e.target.disabled = false;
+            }
+        }
     } else if (e.target.checked == false) {
         activitesCostTotal -= activityCost;
+        // Unhides overlpapping activities
+        for (i=0;i<activities.length;i++) {
+            if (activities[i].getAttribute('data-day-and-time') == e.target.getAttribute('data-day-and-time')) {
+                activities[i].parentElement.classList.remove('disabled');
+                activities[i].disabled = false;
+            }
+        }
     }
     // formatCost();
     activitesCostTotalPrint.innerHTML = `Total: $${activitesCostTotal}`;
+
+
+      
+
+
+
+
+
 });
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -253,7 +278,6 @@ form.addEventListener('submit', (e) => {
 //////////////////////////////////////////////////////////////////////////////////
 // To inprove accesibility
 //////////////////////////////////////////////////////////////////////////////////
-const activities = fieldsetActivites.querySelectorAll('input[type=checkbox]');
 
 for (i=0;i<activities.length;i++) {
 
