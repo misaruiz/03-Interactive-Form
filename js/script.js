@@ -4,9 +4,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 // To focus on first input (name field) on load
 //////////////////////////////////////////////////////////////////////////////////
-// const inputName = document.querySelector('input#name');
-// inputName.focus();
-document.querySelector('input#name').focus();
+const inputName = document.querySelector('input#name');
+inputName.focus();
 
 // To hide the Other Job Role field on load
 const inputJobOther = document.querySelector('input#other-job-role');
@@ -122,7 +121,9 @@ fieldsetActivites.addEventListener('change', (e) => {
     activitesCostTotalPrint.innerHTML = `Total: $${activitesCostTotal}`;
 });
 
-//Payment info
+//////////////////////////////////////////////////////////////////////////////////
+// To display the selected Payment info
+//////////////////////////////////////////////////////////////////////////////////
 const payMethod = document.querySelector('select#payment');
 const payCredit = document.querySelector('div#credit-card');
 const payPaypal = document.querySelector('div#paypal');
@@ -133,6 +134,7 @@ payBitcoin.hidden = true;
 
 payMethod.children[1].setAttribute('selected', '');
 
+// this is where the magice happens. I feel there's a shorter way to do this but it works
 payMethod.addEventListener('change', (e) => {
     if (e.target.value == payPaypal.getAttribute('id')) {
         payPaypal.hidden = false;
@@ -149,3 +151,102 @@ payMethod.addEventListener('change', (e) => {
     }
 }
 );
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// To validate the form
+//////////////////////////////////////////////////////////////////////////////////
+
+
+const inputEmail = document.querySelector('input#email');
+const inputCardNumber = document.querySelector('input#cc-num');
+const inputZip = document.querySelector('input#zip');
+const inputCVV = document.querySelector('input#cvv');
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (e) => {
+    // e.preventDefault()
+    // let inputNameValue = inputName.value;
+    // let inputEmailValue = inputEmail.value;
+    // let inputCardValue = inputCardNumber.value;
+    // let inputZipValue = inputZip.value;
+    // let inputCVVValue = inputCVV.value;
+    let nameValid = /\w+/.test(inputName.value);
+    let emailValid = /^[^@]+@[^@]+\.[a-zA-Z]+$/.test(inputEmail.value);
+    let cardValid = /^[0-9]{4}\-?[0-9]{4}\-?[0-9]{4}\-?[0-9]{4}\s?$/.test(inputCardNumber.value);
+    let zipValid = /^[0-9]{5}$/.test(inputZip.value);
+    let cVVValid = /^[0-9]{3}$/.test(inputCVV.value);
+
+    // Validate name all
+    // if (!nameValid || !emailValid || !cardValid || !zipValid || !cVVValid) {
+    //     e.preventDefault();
+    //     console.log(`name is valid? ${nameValid}`);
+    //     console.log(`email is valid? ${emailValid}`);
+    //     console.log(`card is valid? ${cardValid}`);
+    //     console.log(`zip is valid? ${zipValid}`);
+    //     console.log(`CVV is valid? ${cVVValid}`);
+    //     console.log(`CVV is valid? ${cVVValid}`);
+    // }
+
+    // Validate name
+    console.log(`name is valid? ${nameValid}`);
+
+    if (nameValid == false) {
+        e.preventDefault();
+        inputName.parentElement.classList.add("not-valid");
+        inputName.parentElement.classList.remove("valid");
+        inputName.parentElement.lastElementChild.style.display = 'block';
+    } else {
+        inputName.parentElement.classList.remove("not-valid");
+        inputName.parentElement.classList.add("valid");
+        inputName.parentElement.lastElementChild.style.display = 'none';
+    }
+
+    // Validate email
+    console.log(`email is valid? ${emailValid}`);
+
+    if (emailValid == false) {
+        e.preventDefault();
+    }
+
+    // Validate Credi Card
+    console.log(`card is valid? ${cardValid}`);
+
+    if (cardValid == false) {
+        e.preventDefault();
+    }
+
+    // Validate zip
+    console.log(`zip is valid? ${zipValid}`);
+
+    if (zipValid == false) {
+        e.preventDefault();
+    }
+
+    // Validate CVV
+    console.log(`CVV is valid? ${cVVValid}`);
+
+    if (cVVValid == false) {
+        e.preventDefault();
+    }
+
+})
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// To inprove accesibility
+//////////////////////////////////////////////////////////////////////////////////
+const activities = fieldsetActivites.querySelectorAll('input[type=checkbox]');
+
+for (i=0;i<activities.length;i++) {
+
+    // to listen for activities focus
+    activities[i].addEventListener('focus', (e) => {
+        e.target.parentElement.classList.add("focus");
+    } )
+    //to listen for activities blue
+    activities[i].addEventListener('blur', (e) => {
+        e.target.parentElement.classList.remove("focus");
+    } )
+}
