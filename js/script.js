@@ -228,50 +228,57 @@ form.addEventListener('submit', (e) => {
         input.parentElement.querySelector('.hint').style.display = "none";
     }
 
-    // Validate name
-    // console.log(`name is valid? ${nameValid}`);
-
-    if (nameValid == false) {
-        errorTrue(inputName);
-    } else {
-        errorFalse(inputName);
+    // Validate function
+    function validateField(input, inputValid) {
+        if (inputValid == false) {
+            errorTrue(input);
+        } else {
+            errorFalse(input);
+        }
     }
+
+    validateField(inputName, nameValid);
+    validateField(inputEmail, emailValid);
+    validateField(inputCardNumber, cardValid);
+    validateField(inputZip, zipValid);
+    validateField(inputCVV, cVVValid);
+
 
     // Validate email
     // console.log(`email is valid? ${emailValid}`);
 
-    if (emailValid == false) {
-        errorTrue(inputEmail);
-    } else {
-        errorFalse(inputEmail);
-    }
+    // if (emailValid == false) {
+    //     errorTrue(inputEmail);
+    // } else {
+    //     errorFalse(inputEmail);
+    // }
 
     // Validate Credi Card
     // console.log(`card is valid? ${cardValid}`);
 
-    if (cardValid == false) {
-        errorTrue(inputCardNumber);
-    } else {
-        errorFalse(inputCardNumber);
-    }
+    // if (cardValid == false) {
+    //     errorTrue(inputCardNumber);
+    // } else {
+    //     errorFalse(inputCardNumber);
+    // }
 
     // Validate zip
     // console.log(`zip is valid? ${zipValid}`);
 
-    if (zipValid == false) {
-        errorTrue(inputZip);
-    } else {
-        errorFalse(inputZip);
-    }
+    // if (zipValid == false) {
+    //     errorTrue(inputZip);
+    // } else {
+    //     errorFalse(inputZip);
+    // }
 
     // Validate CVV
     // console.log(`CVV is valid? ${cVVValid}`);
 
-    if (cVVValid == false) {
-        errorTrue(inputCVV);
-    } else {
-        errorFalse(inputCVV);
-    }
+    // if (cVVValid == false) {
+    //     errorTrue(inputCVV);
+    // } else {
+    //     errorFalse(inputCVV);
+    // }
 
 })
 
