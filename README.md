@@ -5,3 +5,8 @@
 </p>
 
 To see my project, see: <a href="https://misaruiz.github.io/03-interactive-form/" target="_blank">My Interactive Form</a>
+
+Extra Credit:
+
+1. Prevent users from registering for conflicting activities: ✅
+2. Real-time error message: ✅
