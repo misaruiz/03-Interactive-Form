@@ -315,6 +315,21 @@ for (i=0;i<activities.length;i++) {
 // For realtime error message
 //////////////////////////////////////////////////////////////////////////////////
 inputEmail.addEventListener('keyup', (e) => {
-    let emailValid = emailRegex.test(inputEmail.value);
-    validateField(inputEmail, emailValid, e);
+    validateField(inputEmail, emailRegex.test(inputEmail.value), e);
+})
+
+inputName.addEventListener('blur', (e) => {
+    validateField(inputName, nameRegex.test(inputName.value), e);
+})
+
+inputZip.addEventListener('keyup', (e) => {
+    validateField(inputZip, zipRegex.test(inputZip.value), e);
+})
+
+inputCardNumber.addEventListener('keyup', (e) => {
+    validateField(inputCardNumber, cardRegex.test(inputCardNumber.value), e);
+})
+
+inputCVV.addEventListener('keyup', (e) => {
+    validateField(inputCVV, cVVRegex.test(inputCVV.value), e);
 })
