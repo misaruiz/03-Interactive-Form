@@ -10,7 +10,7 @@ inputName.focus();
 // To hide the Other Job Role field on load
 const inputJobOther = document.querySelector('input#other-job-role');
 function inputJobOtherHide() {
-    inputJobOther.style.display = 'none';
+    inputJobOther.style.display = "none";
 };
 inputJobOtherHide();
 
@@ -25,7 +25,7 @@ selectJob.addEventListener("change", (e) => {
     // let optionValue = optionTarget.value;
     // console.log(optionValue);
     if (optionTarget.value == optionJobOther.value) {
-        inputJobOther.style.display = 'block';
+        inputJobOther.style.display = "block";
     } else {
         inputJobOtherHide();
     }
@@ -217,13 +217,13 @@ form.addEventListener('submit', (e) => {
         e.preventDefault();
         input.parentElement.classList.add("not-valid");
         input.parentElement.classList.remove("valid");
-        input.parentElement.lastElementChild.style.display = 'block';
+        input.parentElement.lastElementChild.style.display = "block";
     }
 
     function errorFalse(input) {
         input.parentElement.classList.remove("not-valid");
         input.parentElement.classList.add("valid");
-        input.parentElement.lastElementChild.style.display = 'none';
+        input.parentElement.lastElementChild.style.display = "none";
     }
 
     // Validate name
