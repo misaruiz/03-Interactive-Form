@@ -54,8 +54,8 @@ selectDesign.addEventListener('change', (e) => {
         let designTargetValue = e.target.value;
         let selectColorChildren = selectColor.children[i];
         let dataTheme = selectColorChildren.getAttribute('data-theme');
-        console.log(designTargetValue);
-        console.log(dataTheme); 
+        // console.log(designTargetValue);
+        // console.log(dataTheme); 
         if (designTargetValue == dataTheme) {
             selectColorChildren.hidden = false;
             selectColorChildren.setAttribute('select', true);
@@ -188,74 +188,62 @@ form.addEventListener('submit', (e) => {
     //     console.log(`CVV is valid? ${cVVValid}`);
     // }
 
+    function errorTrue(input) {
+        e.preventDefault();
+        input.parentElement.classList.add("not-valid");
+        input.parentElement.classList.remove("valid");
+        input.parentElement.lastElementChild.style.display = 'block';
+    }
+
+    function errorFalse(input) {
+        input.parentElement.classList.remove("not-valid");
+        input.parentElement.classList.add("valid");
+        input.parentElement.lastElementChild.style.display = 'none';
+    }
+
     // Validate name
-    console.log(`name is valid? ${nameValid}`);
+    // console.log(`name is valid? ${nameValid}`);
 
     if (nameValid == false) {
-        e.preventDefault();
-        inputName.parentElement.classList.add("not-valid");
-        inputName.parentElement.classList.remove("valid");
-        inputName.parentElement.lastElementChild.style.display = 'block';
+        errorTrue(inputName);
     } else {
-        inputName.parentElement.classList.remove("not-valid");
-        inputName.parentElement.classList.add("valid");
-        inputName.parentElement.lastElementChild.style.display = 'none';
+        errorFalse(inputName);
     }
 
     // Validate email
-    console.log(`email is valid? ${emailValid}`);
+    // console.log(`email is valid? ${emailValid}`);
 
     if (emailValid == false) {
-        e.preventDefault();
-        inputEmail.parentElement.classList.add("not-valid");
-        inputEmail.parentElement.classList.remove("valid");
-        inputEmail.parentElement.lastElementChild.style.display = 'block';
+        errorTrue(inputEmail);
     } else {
-        inputEmail.parentElement.classList.remove("not-valid");
-        inputEmail.parentElement.classList.add("valid");
-        inputEmail.parentElement.lastElementChild.style.display = 'none';
+        errorFalse(inputEmail);
     }
 
     // Validate Credi Card
-    console.log(`card is valid? ${cardValid}`);
+    // console.log(`card is valid? ${cardValid}`);
 
     if (cardValid == false) {
-        e.preventDefault();
-        inputCardNumber.parentElement.classList.add("not-valid");
-        inputCardNumber.parentElement.classList.remove("valid");
-        inputCardNumber.parentElement.lastElementChild.style.display = 'block';
+        errorTrue(inputCardNumber);
     } else {
-        inputCardNumber.parentElement.classList.remove("not-valid");
-        inputCardNumber.parentElement.classList.add("valid");
-        inputCardNumber.parentElement.lastElementChild.style.display = 'none';
+        errorFalse(inputCardNumber);
     }
 
     // Validate zip
-    console.log(`zip is valid? ${zipValid}`);
+    // console.log(`zip is valid? ${zipValid}`);
 
     if (zipValid == false) {
-        e.preventDefault();
-        inputZip.parentElement.classList.add("not-valid");
-        inputZip.parentElement.classList.remove("valid");
-        inputZip.parentElement.lastElementChild.style.display = 'block';
+        errorTrue(inputZip);
     } else {
-        inputZip.parentElement.classList.remove("not-valid");
-        inputZip.parentElement.classList.add("valid");
-        inputZip.parentElement.lastElementChild.style.display = 'none';
+        errorFalse(inputZip);
     }
 
     // Validate CVV
-    console.log(`CVV is valid? ${cVVValid}`);
+    // console.log(`CVV is valid? ${cVVValid}`);
 
     if (cVVValid == false) {
-        e.preventDefault();
-        inputCVV.parentElement.classList.add("not-valid");
-        inputCVV.parentElement.classList.remove("valid");
-        inputCVV.parentElement.lastElementChild.style.display = 'block';
+        errorTrue(inputCVV);
     } else {
-        inputCVV.parentElement.classList.remove("not-valid");
-        inputCVV.parentElement.classList.add("valid");
-        inputCVV.parentElement.lastElementChild.style.display = 'none';
+        errorFalse(inputCVV);
     }
 
 })
