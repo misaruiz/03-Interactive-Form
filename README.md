@@ -1,5 +1,7 @@
 # 03-interactive-form
 
+<p align="center">
 <img src="https://uploads.teamtreehouse.com/production/profile-photos/8931982/thumb_IMG_3204_2-5-profile.jpg" alt="Logo" width="80" height="80">
+</p>
 
 To see my project, see: <a href="https://misaruiz.github.io/03-interactive-form/" target="_blank"> Project 3 of Full Stack JavaScript Techdegree Course</a>
