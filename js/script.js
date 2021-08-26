@@ -54,16 +54,25 @@ selectDesign.addEventListener('change', (e) => {
         let designTargetValue = e.target.value;
         let selectColorChildren = selectColor.children[i];
         let dataTheme = selectColorChildren.getAttribute('data-theme');
+        
         // console.log(designTargetValue);
         // console.log(dataTheme); 
         if (designTargetValue == dataTheme) {
             selectColorChildren.hidden = false;
-            selectColorChildren.setAttribute('select', true);
+            selectColorChildren.removeAttribute('selected');
+            selectColor.querySelectorAll('[data-theme="' + dataTheme +'"]')[0].setAttribute('selected', true);
+
         } else {
             selectColorChildren.hidden = true;
-            selectColorChildren.setAttribute('select', false);
+            selectColorChildren.removeAttribute('selected');
+            // selectColorChildren.setAttribute('selected', false);
+            // selectColor.querySelectorAll('[data-theme="' + designTargetValue +'"]')[0].setAttribute('selected', true);
+            // selectColorChildren.setAttribute('select', false);
+            // selectColor.querySelector(dataTheme).selected = '';
         }
     }
+
+
         
     });
 
@@ -254,9 +263,13 @@ form.addEventListener('submit', (e) => {
 
     validateField(inputName, nameValid, e);
     validateField(inputEmail, emailValid, e);
-    validateField(inputCardNumber, cardValid, e);
-    validateField(inputZip, zipValid, e);
-    validateField(inputCVV, cVVValid, e);
+    //if credit card info is hidden don't validate credit card
+    if (!payCredit.hidden) {    
+        validateField(inputCardNumber, cardValid, e);
+        validateField(inputZip, zipValid, e);
+        validateField(inputCVV, cVVValid, e);
+    }
+
 
 
     // Validate email
