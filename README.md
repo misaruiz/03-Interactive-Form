@@ -9,5 +9,5 @@
 ## Extra Credit:
 
 1. Prevent users from registering for conflicting activities: ✅
-2. Real-time error message: ✅ --> On all input fields (Name, Email, Credit Card, Zip and CVV)
+2. Real-time error message: ✅ --> On all input fields (Name, Email, Activities, Credit Card, Zip and CVV)
 3. Conditional error message: ✅ --> Email Address
