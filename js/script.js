@@ -110,6 +110,22 @@ const activitesCostTotalPrint = document.querySelector('#activities-cost');
 let activitesCostTotal = 0;
 const activities = fieldsetActivites.querySelectorAll('input[type=checkbox]');
 
+
+//To validate that at least one activity has been selected
+function activitiesValidate(eTarget) {
+    if (activitesCostTotal == 0) {
+        eTarget.preventDefault();
+        fieldsetActivites.classList.remove('valid');
+        fieldsetActivites.classList.add('not-valid');
+        fieldsetActivites.querySelector('.hint').style.display = "block";
+    } else {
+        fieldsetActivites.classList.remove('not-valid');
+        fieldsetActivites.classList.add('valid');
+        fieldsetActivites.querySelector('.hint').style.display = "none";
+    }
+}
+
+
 // to listen for any changes in the Activities fielset
 
 fieldsetActivites.addEventListener('change', (e) => {
@@ -145,13 +161,8 @@ fieldsetActivites.addEventListener('change', (e) => {
     }
     // formatCost();
     activitesCostTotalPrint.innerHTML = `Total: $${activitesCostTotal}`;
-
-
       
-
-
-
-
+    activitiesValidate(e);
 
 });
 
@@ -313,6 +324,15 @@ form.addEventListener('submit', (e) => {
     //     errorFalse(inputCVV);
     // }
 
+    // //To validate that at least one activity has been selected
+    // if (activitesCostTotal == 0) {
+    //     fieldsetActivites.classList.add('not-valid')
+    // } else {
+    //     fieldsetActivites.classList.add('valid')
+    // }
+
+    activitiesValidate(e);
+
 })
 
 
@@ -360,3 +380,5 @@ inputCardNumber.addEventListener('keyup', (e) => {
 inputCVV.addEventListener('keyup', (e) => {
     validateField(inputCVV, cVVRegex.test(inputCVV.value), e);
 })
+
+
