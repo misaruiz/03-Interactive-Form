@@ -200,38 +200,43 @@ const form = document.querySelector('form');
 
 const nameRegex = /\w+/;
 const emailRegex = /^[^@]+@[^@]+\.[a-zA-Z]+$/;
-const emailEmptyRegex = /.+/;
+// const emailEmptyRegex = /^\s*$/;
 const cardRegex= /^[0-9]{13,16}$/;
 const zipRegex = /^[0-9]{5}$/;
 const cVVRegex = /^[0-9]{3}$/;
 
+const emailCorrectFormMsg = inputEmail.parentElement.querySelector('.hint').innerHTML;
+
 
 // Validate function
 function errorTrue(input, eTarget) {
-eTarget.preventDefault();
-input.parentElement.classList.add("not-valid");
-input.parentElement.classList.remove("valid");
-// input.parentElement.lastElementChild.style.display = "block";
-input.parentElement.querySelector('.hint').style.display = "block";
-    // to have alternate message if field is simply missing email address
-    if (emailEmptyRegex.test(inputEmail) == true) {
-        inputEmail.parentElement.querySelector('.hint').innerHTML = "Please enter an email address."
-    }
+    eTarget.preventDefault();
+    input.parentElement.classList.add("not-valid");
+    input.parentElement.classList.remove("valid");
+    // input.parentElement.lastElementChild.style.display = "block";
+    input.parentElement.querySelector('.hint').style.display = "block";      
 }
 
 function errorFalse(input) {
-input.parentElement.classList.remove("not-valid");
-input.parentElement.classList.add("valid");
-// input.parentElement.lastElementChild.style.display = "none";
-input.parentElement.querySelector('.hint').style.display = "none";
+    input.parentElement.classList.remove("not-valid");
+    input.parentElement.classList.add("valid");
+    // input.parentElement.lastElementChild.style.display = "none";
+    input.parentElement.querySelector('.hint').style.display = "none";
 }
 
 function validateField(input, inputValid, eTarget) {
-if (inputValid == false) {
-errorTrue(input, eTarget);
-} else {
-errorFalse(input, eTarget);
-}
+    
+    if (inputValid == false) {
+        // let emptyEmail = emailEmptyRegex.test(inputEmail);
+        if (inputEmail.value === '') {
+            inputEmail.parentElement.querySelector('.hint').innerHTML = "Please enter an email address.";
+        } else {
+            inputEmail.parentElement.querySelector('.hint').innerHTML = emailCorrectFormMsg;
+        }
+    errorTrue(input, eTarget);
+    } else {
+    errorFalse(input, eTarget);
+    }
 }
 
 
@@ -333,6 +338,10 @@ for (i=0;i<activities.length;i++) {
 // For realtime error message
 //////////////////////////////////////////////////////////////////////////////////
 inputEmail.addEventListener('keyup', (e) => {
+    validateField(inputEmail, emailRegex.test(inputEmail.value), e);
+})
+
+inputEmail.addEventListener('focusout', (e) => {
     validateField(inputEmail, emailRegex.test(inputEmail.value), e);
 })
 
